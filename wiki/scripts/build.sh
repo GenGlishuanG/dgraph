@@ -27,7 +27,7 @@ HUGO="${HUGO:-hugo}"
 # and then the older versions in descending order, such that the
 # build script can place the artifact in an appropriate location.
 VERSIONS_ARRAY=(
-	'naman/docs-merge'
+	'Naman'
 	'v20.03.1'
 	'master'
 	'v20.03.0'
@@ -52,7 +52,7 @@ OLD_VERSIONS=(
 )
 
 NEW_VERSIONS=(
-	'naman/docs-merge'
+	'Naman'
 )
 
 joinVersions() {
