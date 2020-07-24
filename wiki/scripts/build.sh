@@ -27,6 +27,7 @@ HUGO="${HUGO:-hugo}"
 # and then the older versions in descending order, such that the
 # build script can place the artifact in an appropriate location.
 VERSIONS_ARRAY=(
+	'naman/docs-merge'
 	'v20.03.1'
 	'master'
 	'v20.03.0'
@@ -36,6 +37,22 @@ VERSIONS_ARRAY=(
 	'v1.1.1'
 	'v1.1.0'
 	'v1.0.18'
+)
+
+OLD_VERSIONS=(
+	'v20.03.1'
+	'master'
+	'v20.03.0'
+	'v1.2.2'
+	'v1.2.1'
+	'v1.2.0'
+	'v1.1.1'
+	'v1.1.0'
+	'v1.0.18'
+)
+
+NEW_VERSIONS=(
+	'naman/docs-merge'
 )
 
 joinVersions() {
@@ -139,7 +156,23 @@ while true; do
 	echo -e "$(date)  Starting to check branches."
 	git remote update > /dev/null
 
-	for version in "${VERSIONS_ARRAY[@]}"
+	for version in "${OLD_VERSIONS[@]}"
+	do
+		checkAndUpdate "$version"
+	done
+
+	# Lets check if the theme was updated.
+	pushd themes/hugo-docs > /dev/null
+	themeUpdated=1
+	if branchUpdated "naman/docs-merge" ; then
+		echo -e "$(date) $GREEN Theme has been updated. Now will update the docs.$RESET"
+		themeUpdated=0
+	fi
+	popd > /dev/null
+
+	git remote update > /dev/null
+
+	for version in "${NEW_VERSIONS[@]}"
 	do
 		checkAndUpdate "$version"
 	done
