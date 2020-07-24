@@ -119,8 +119,8 @@ checkAndUpdate()
 
 	if [[ $version == "master" ]]; then
 		branch="master"
-	elif [[ $version == "naman/docs-merge" ]]; then
-		branch="naman/docs-merge"
+	elif [[ $version == "Naman" ]]; then
+		branch="Naman"
 	else
 		branch="release/$version"
 	fi
