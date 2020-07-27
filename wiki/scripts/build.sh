@@ -18,6 +18,8 @@ PUBLIC="${PUBLIC:-public}"
 LOOP="${LOOP:-true}"
 # Binary of hugo command to run.
 HUGO="${HUGO:-hugo}"
+OLD_THEME="master"
+NEW_THEME="naman/docs-merge"
 
 # TODO - Maybe get list of released versions from Github API and filter
 # those which have docs.
@@ -148,7 +150,7 @@ while true; do
 	pushd themes/hugo-docs > /dev/null
 	git remote update > /dev/null
 	themeUpdated=1
-	if branchUpdated "master" ; then
+	if branchUpdated "${OLD_THEME}" ; then
 		echo -e "$(date) $GREEN Theme has been updated. Now will update the docs.$RESET"
 		themeUpdated=0
 	fi
@@ -166,7 +168,7 @@ while true; do
 	# Lets check if the theme was updated.
 	pushd themes/hugo-docs > /dev/null
 	themeUpdated=1
-	if branchUpdated "naman/docs-merge" ; then
+	if branchUpdated "${NEW_THEME}" ; then
 		echo -e "$(date) $GREEN Theme has been updated. Now will update the docs.$RESET"
 		themeUpdated=0
 	fi
