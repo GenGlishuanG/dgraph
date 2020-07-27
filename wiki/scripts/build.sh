@@ -68,7 +68,7 @@ rebuild() {
 	echo -e "$(date) $GREEN Updating docs for branch: $1.$RESET"
 
 	# The latest documentation is generated in the root of /public dir
-	# Older documentations are generated in their respective `/public/vx.x.x` dirs
+	# Older docum entations are generated in their respective `/public/vx.x.x` dirs
 	dir=''
 	if [[ $2 != "${VERSIONS_ARRAY[0]}" ]]; then
 		dir=$2
@@ -84,9 +84,9 @@ rebuild() {
 	HUGO_TITLE="Dgraph Doc ${2}"\
 		VERSIONS=${VERSION_STRING}\
 		CURRENT_BRANCH=${1}\
-		CURRENT_VERSION=${2} ${HUGO} \
+		CURRENT_VERSION=${2} ${HUGO} --verboseLog --verbose \
 		--destination="${PUBLIC}"/"$dir"\
-		--baseURL="$HOST"/"$dir" 1> /dev/null
+		--baseURL="$HOST"/"$dir" 
 }
 
 branchUpdated()
