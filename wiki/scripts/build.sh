@@ -84,7 +84,7 @@ rebuild() {
 	HUGO_TITLE="Dgraph Doc ${2}"\
 		VERSIONS=${VERSION_STRING}\
 		CURRENT_BRANCH=${1}\
-		CURRENT_VERSION=${2} ${HUGO} --verboseLog --verbose \
+		CURRENT_VERSION=${2} ${HUGO}\
 		--destination="${PUBLIC}"/"$dir"\
 		--baseURL="$HOST"/"$dir" 
 }
